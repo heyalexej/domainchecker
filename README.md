@@ -22,4 +22,4 @@ Easy, ha?
 Add exception handling and write on error.
 
 
-**License:** Do whatever the fuck you want!
+**License:** [Do whatever the fuck you want!](http://www.wtfpl.net)
