@@ -15,5 +15,9 @@ $ python domainchecker.py -i inputfile.csv -o outputfile.csv
 
 Easy, ha?
 
+###Todo
+
+Add exception handling and write on error.
+
 
 **License:** Do whatever the fuck you want!
