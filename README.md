@@ -10,6 +10,8 @@ The script then checks for domain availability like so: `yourkeyword.com`, `your
 Run the script from your command line:
 
 ```bash
+$ git clone git@github.com:heyalexej/domainchecker.git
+$ pip install -r requirements.txt
 $ python domainchecker.py -i inputfile.csv -o outputfile.csv
 ```
 
