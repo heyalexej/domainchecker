@@ -10,7 +10,7 @@ from termcolor import colored
 
 def read_keywords(filename):
     keywords = []
-    with codecs.open(filename, "rU", "utf-8") as f:
+    with codecs.open(filename, "rU", "utf-16") as f:  # the standard exorts are utf-16. Use utf-8 if your work with your own files.
         reader = csv.reader(f, delimiter="\t")
         reader.next()  # skipping header
         for row in reader:
