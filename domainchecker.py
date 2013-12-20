@@ -8,14 +8,35 @@ import json
 import urllib2
 from termcolor import colored
 
+
+def bad_keyword(keyword):
+    chars = set('&/$%@#')
+    if any((c in chars) for c in keyword):
+        return True
+    else:
+        return False
+
+
 def read_keywords(filename):
     keywords = []
-    with codecs.open(filename, "rU", "utf-16") as f:  # the standard exorts are utf-16. Use utf-8 if your work with your own files.
+
+    ignored = open("ignored.txt", "a")
+
+    with codecs.open(filename, "rU", "utf-16") as f:
+#    with codecs.open(filename, "rU", "utf-8") as f:
         reader = csv.reader(f, delimiter="\t")
         reader.next()  # skipping header
         for row in reader:
-            keywords.append(row[1])
-    return keywords
+            keyword = row[1]
+            if not bad_keyword(keyword):
+                keywords.append(row[1])
+            else:
+                ignored.write(keyword)
+                ignored.write("\n")
+
+        ignored.close()
+
+        return keywords
 
 
 def domainr_info_json(domainname):
@@ -27,7 +48,7 @@ def domainr_info_json(domainname):
     response = opener.open(request).read()
     objs = json.loads(response)
     return objs
-    print domainname
+
 
 def is_taken(domainr_json):
     return domainr_json["availability"] == "taken"
@@ -35,27 +56,34 @@ def is_taken(domainr_json):
 
 def concatenation(keyword, symbol):
     return symbol.join(keyword.split())
-    print ("This: " + keyword)
+
 
 def fetch_status(keywords):
     rows = [["Keyword", "com", "net", "org", "com hyphen", "net hyphen", "org hyphen"]]
 
-    for keyword in keywords:
-        row = [keyword]
-        for symbol in ["", "-"]:
-            for tld in [".com", ".net", ".org"]:
-                domain = concatenation(keyword, symbol) + tld
+    try:
+        for keyword in keywords:
+            row = [keyword]
+            for symbol in ["", "-"]:
+                for tld in [".com", ".net", ".org"]:
+                    domain = concatenation(keyword, symbol) + tld
 
-                req = domainr_info_json(domain)
-                if is_taken(req):
-                    row.append(domain)
-                    print colored("------- Domain Taken---------- : " + domain, 'magenta')
-                else:
-                    row.append("XXXXX")
-                    print colored("------- Domain Free ---------- : " + domain, 'green')
+                    req = domainr_info_json(domain)
+
+                    taken = is_taken(req)
+
+                    if is_taken(req):
+                        row.append(domain)
+                        print colored("Domain Taken --------- : " + domain, 'magenta')
+                    else:
+                        row.append("XXXXX")
+                        print colored("Domain Free ---------- : " + domain, 'green')
         rows.append(row)
+    except:
+        return rows
 
     return rows
+
 
 def write_result(filename, rows):
     with open(filename, "wb") as res:
