@@ -1,4 +1,5 @@
-#Domain Checker
+Domain Checker
+==============
  
 Export keyword ideas from Google's Ad Planner and check for availability.
 This command line tool goes through the second column of the exported CSV file and concatenates the keywords like so: `your keyword` becomes `yourkeyword` and `your-keyword`. 
@@ -9,7 +10,8 @@ If the list contains keywords with special chars like `&/$%@#` they get written 
 
 The script should write to CSV even if it runs into an issue.
 
-##Usage
+Usage
+-----
 
 Run the script from your command line:
 
@@ -21,10 +23,26 @@ $ python domainchecker.py -i inputfile.csv -o outputfile.csv
 
 Easy, ha?
 
-###Todo
+Todo
+----
 
 ~~Add exception handling~~
 ~~Write on error~~
+
+Known Issues
+------------
+
+- Sometimes 304 errors!? from API
+- Sometimes false positives.
+
+
+
+Author
+------
+
+**Twitter:** [@heyalexej](http://twitter.com/heyalexej)
+
+**GitHub:** [github.com/heyalexej](https://github.com/heyalexej)
 
 
 **License:** [Do whatever the fuck you want!](http://www.wtfpl.net)
