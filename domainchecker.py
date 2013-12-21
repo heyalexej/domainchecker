@@ -78,7 +78,7 @@ def fetch_status(keywords):
                     else:
                         row.append("XXXXX")
                         print colored("Domain Free ---------- : " + domain, 'green')
-        rows.append(row)
+            rows.append(row)
     except:
         return rows
 
@@ -89,6 +89,7 @@ def write_result(filename, rows):
     with open(filename, "wb") as res:
         writer = csv.writer(res, delimiter="\t")
         writer.writerows(rows)
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(prog="domainchecker", version="0.1")
