@@ -43,7 +43,7 @@ def domainr_info_json(domainname):
     requesturl = "http://www.domai.nr/api/json/info?q="
     requesturl += domainname
     request = urllib2.Request(requesturl)
-    request.add_header("User-Agent", "domainchecker.py/0.1")
+    request.add_header("User-Agent", "Mozilla/2.0 (compatible; MSIE 3.0; Windows 95)")
     opener = urllib2.build_opener()
     response = opener.open(request).read()
     objs = json.loads(response)
@@ -55,7 +55,7 @@ def is_taken(domainr_json):
 
 
 def concatenation(keyword, symbol):
-    return symbol.join(keyword.split())
+    return symbol.join(keyword.lower().split())
 
 
 def fetch_status(keywords):
@@ -74,7 +74,7 @@ def fetch_status(keywords):
 
                     if is_taken(req):
                         row.append(domain)
-                        print colored("Domain Taken --------- : " + domain, 'magenta')
+                        print colored("Domain Taken --------- : " + domain, 'red')
                     else:
                         row.append("XXXXX")
                         print colored("Domain Free ---------- : " + domain, 'green')
@@ -92,7 +92,7 @@ def write_result(filename, rows):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(prog="domainchecker", version="0.1")
+    parser = argparse.ArgumentParser(prog="domainchecker", version="0.2")
     parser.add_argument("--input", "-i", type=str)
     parser.add_argument("--output", "-o", type=str)
 
