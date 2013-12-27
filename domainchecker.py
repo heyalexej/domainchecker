@@ -10,7 +10,7 @@ from termcolor import colored
 
 
 def bad_keyword(keyword):
-    chars = set('&/$%@#')
+    chars = set('.,\'&/$%@#')
     if any((c in chars) for c in keyword):
         return True
     else:
