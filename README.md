@@ -10,6 +10,11 @@ If the list contains keywords with special chars like `&/$%@#` they get written 
 
 The script should write to CSV even if it runs into an issue.
 
+Why?
+----
+[![Geeks vs. Mortals](https://lh5.googleusercontent.com/59j9us2ZAhfDMY3uTu6tCrQz9WhFsVndtjKLz8RQSG0=w800-h570-no)](https://plus.google.com/+BrunoOliveira/posts/MGxauXypb1Y)
+
+
 Usage
 -----
 
@@ -26,8 +31,9 @@ Easy, ha?
 Todo
 ----
 
-~~Add exception handling~~
-~~Write on error~~
+- <del>Add exception handling</del>
+- <del>Write on error</del>
+- Add recognition of single keywords.
 
 Known Issues
 ------------
