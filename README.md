@@ -33,7 +33,9 @@ Todo
 
 - <del>Add exception handling</del>
 - <del>Write on error</del>
+- Resume after error.
 - Add recognition of single keywords.
+
 
 Known Issues
 ------------
