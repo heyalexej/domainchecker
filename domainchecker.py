@@ -58,30 +58,47 @@ def concatenation(keyword, symbol):
     return symbol.join(keyword.lower().split())
 
 
+def prepare_domains(keyword, tld):
+    domains = []
+    if ' ' in keyword:
+        for symbol in ['', '-']:
+            domains.append(
+                '{0}{1}'.format(concatenation(keyword, symbol), tld)
+            )
+    else:
+        domains.append('{0}{1}'.format(keyword, tld))
+    return domains
+
+def fetch_single(domain):
+    try:
+        req = domainr_info_json(domain)
+    except Exception as e:
+        print(colored('Error "{0}" occurred when requesting '
+                      '{1} domain'.format(e, domain), 'red'))
+        return
+
+    if is_taken(req):
+        print(colored('Domain Taken --------- : {0}'.format(domain), 'red'))
+        return False
+    else:
+        print(colored('Domain Free ---------- : {0}'.format(domain), 'green'))
+        return True
+
 def fetch_status(keywords):
     rows = [["Keyword", "com", "net", "org", "com hyphen", "net hyphen", "org hyphen"]]
 
-    try:
-        for keyword in keywords:
-            row = [keyword]
-            for symbol in ["", "-"]:
-                for tld in [".com", ".net", ".org"]:
-                    domain = concatenation(keyword, symbol) + tld
+    for keyword in keywords:
+        row = [keyword]
+        for tld in [".com", ".net", ".org"]:
+            domains = prepare_domains(keyword, tld)
+            for domain in domains:
+                result = fetch_single(domain)
+                if result is True:
+                    row.append("XXXXX")
+                elif result is False:
+                    row.append(keyword)
 
-                    req = domainr_info_json(domain)
-
-                    taken = is_taken(req)
-
-                    if is_taken(req):
-                        row.append(domain)
-                        print colored("Domain Taken --------- : " + domain, 'red')
-                    else:
-                        row.append("XXXXX")
-                        print colored("Domain Free ---------- : " + domain, 'green')
-            rows.append(row)
-    except:
-        return rows
-
+        rows.append(row)
     return rows
 
 
