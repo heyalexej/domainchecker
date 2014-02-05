@@ -2,7 +2,7 @@ Domain Checker
 ==============
  
 Export keyword ideas from Google's Ad Planner and check for availability.
-This command line tool goes through the second column of the exported CSV file and concatenates the keywords like so: `your keyword` becomes `yourkeyword` and `your-keyword`. 
+This command line tool goes through the second column of the exported CSV file and concatenates the keywords like so: `your keyword` becomes `yourkeyword` and `your-keyword`. Single words of course only get checked once.
 
 The script then checks for domain availability like so: `yourkeyword.com`, `yourkeyword.net`, `yourkeyword.org`, `yourkeyword.info` and then the second class citizens of the interwebz `your-keyword.com`, `your-keyword.net`, `your-keyword.org`, `your-keyword.info` and writes the results to your specified output file.
 
@@ -34,7 +34,7 @@ Todo
 - <del>Add exception handling</del>
 - <del>Write on error</del>
 - Resume after error.
-- Add recognition of single keywords.
+- <del>Add recognition of single keywords.</del>
 
 
 Known Issues
