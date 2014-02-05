@@ -80,10 +80,10 @@ def fetch_single(domain, row):
 
     if is_taken(req):
         print(colored('Domain Taken --------- : {0}'.format(domain), 'red'))
-        row.append('XXXXX')
+        row.append(domain)
     else:
         print(colored('Domain Free ---------- : {0}'.format(domain), 'green'))
-        row.append(domain)
+        row.append('XXXXX')
 
 
 def fetch_status(keywords):
@@ -110,7 +110,7 @@ def write_result(filename, rows):
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(prog='domainchecker', version='0.2')
+    parser = argparse.ArgumentParser(prog='domainchecker', version='0.3')
     parser.add_argument('--input', '-i', type=str)
     parser.add_argument('--output', '-o', type=str)
 
