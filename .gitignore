@@ -2,3 +2,4 @@ domainchecker-v1.py
 data/*
 ignored.txt
 !data/download-e412eaac-25d4-40c6-a398-3e4ca2f3d900.csv
+!data/example-output.csv
